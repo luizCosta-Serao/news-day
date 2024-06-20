@@ -25,5 +25,10 @@
           </ul>
       </nav>
   </header>
+
+  <section class="hero">
+      <h1>Acompanhe as últimas notícias</h1>
+      <p>Fique por dentro de tudo que acontece no Brasil</p>
+  </section>
 </body>
 </html>
