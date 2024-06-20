@@ -30,5 +30,37 @@
       <h1>Acompanhe as últimas notícias</h1>
       <p>Fique por dentro de tudo que acontece no Brasil</p>
   </section>
+
+  <section class="container">
+      <aside class="sidebar">
+          <div class="box-content-sidebar">
+              <h2>
+                  Realizar uma busca 
+                  <img title="Search" src="<?php echo INCLUDE_PATH; ?>assets/search.svg" alt="Search">
+              </h2>
+              <form action="">
+                  <input type="text" name="search" id="search">
+                  <input type="submit" name="action" value="BUSCAR">
+              </form>
+          </div>
+
+          <div class="box-content-sidebar">
+              <h2>Selecione a categoria</h2>
+              <form action="">
+                  <select name="category" id="category">
+                      <option value="">Gerais</option>
+                      <option value="">Esportes</option>
+                      <option value="">Saúde</option>
+                  </select>
+              </form>
+          </div>
+
+          <div class="box-content-sidebar">
+              <h2>Conheça o autor</h2>
+              <img class="photo-author" title="Autor" src="<?php echo INCLUDE_PATH; ?>assets/photo-autor.jpeg" alt="Autor">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur turpis mauris, ut volutpat nisl dapibus vitae. Ut sagittis eget nibh sit amet hendrerit. Nam convallis venenatis tellus, at porta lacus mollis ut.</p>
+          </div>
+      </aside>
+  </section>
 </body>
 </html>
