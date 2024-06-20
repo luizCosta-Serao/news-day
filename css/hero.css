@@ -1,0 +1,19 @@
+.hero {
+  background-color: #000425;
+  margin-top: 10px;
+  padding: 80px 40px 120px 40px;
+}
+
+.hero h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 64px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.hero p {
+  color: #E0E0E0;
+  font-size: 24px;
+  text-align: center;
+}
