@@ -6,3 +6,9 @@
 
 /* Styles Hero */
 @import url('./hero.css');
+
+/* Styles Container */
+@import url('./container.css');
+
+/* Styles Sidebar */
+@import url('./sidebar.css');
