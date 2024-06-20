@@ -15,3 +15,13 @@ a {
   color: inherit;
 }
 
+.btn {
+  color: #fafafa;
+  font-size: 24px;
+  padding: 10px 20px;
+  background-color: #000425;
+  letter-spacing: 1.25px;
+  font-weight: 700;
+  border-radius: 5px;
+  border: none;
+}

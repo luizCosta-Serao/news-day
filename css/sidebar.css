@@ -31,17 +31,6 @@
   margin-bottom: 15px;
 }
 
-.box-content-sidebar form input[type="submit"] {
-  color: #fafafa;
-  font-size: 24px;
-  padding: 10px 20px;
-  background-color: #000425;
-  letter-spacing: 1.25px;
-  font-weight: 700;
-  border-radius: 5px;
-  border: none;
-}
-
 .box-content-sidebar select {
   border: 1px solid #000425;
   width: 260px;
