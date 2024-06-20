@@ -40,7 +40,7 @@
               </h2>
               <form action="">
                   <input type="text" name="search" id="search">
-                  <input type="submit" name="action" value="BUSCAR">
+                  <input class="btn" type="submit" name="action" value="BUSCAR">
               </form>
           </div>
 
@@ -56,11 +56,40 @@
           </div>
 
           <div class="box-content-sidebar">
-              <h2>Conheça o autor</h2>
-              <img class="photo-author" title="Autor" src="<?php echo INCLUDE_PATH; ?>assets/photo-autor.jpeg" alt="Autor">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur turpis mauris, ut volutpat nisl dapibus vitae. Ut sagittis eget nibh sit amet hendrerit. Nam convallis venenatis tellus, at porta lacus mollis ut.</p>
+                <h2>Conheça o autor</h2>
+                <img class="photo-author" title="Autor" src="<?php echo INCLUDE_PATH; ?>assets/photo-autor.jpeg" alt="Autor">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur turpis mauris, ut volutpat nisl dapibus vitae. Ut sagittis eget nibh sit amet hendrerit. Nam convallis venenatis tellus, at porta lacus mollis ut.</p>
           </div>
       </aside>
+
+      <div class="noticias">
+          <h2>Visualizando em esportes</h2>
+          <ul class="lista-noticias">
+              <li class="single-noticia">
+                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
+                  <a class="btn" href="">LER MAIS</a>
+              </li>
+
+              <li class="single-noticia">
+                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
+                  <a class="btn" href="">LER MAIS</a>
+              </li>
+
+              <li class="single-noticia">
+                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
+                  <a class="btn" href="">LER MAIS</a>
+              </li>
+
+              <li class="single-noticia">
+                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
+                  <a class="btn" href="">LER MAIS</a>
+              </li>
+          </ul>
+      </div>
   </section>
 </body>
 </html>
