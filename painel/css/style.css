@@ -1,2 +1,8 @@
+/* Style Global */
+@import url('./global.css');
+
 /* Style Login Page */
 @import url('./login.css');
+
+/* Style Painel de Controle page */
+@import url('./main.css');
