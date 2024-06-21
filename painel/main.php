@@ -1,0 +1,1 @@
+Bem-vindo ao painel de controle <?php echo $_SESSION['name']; ?>
