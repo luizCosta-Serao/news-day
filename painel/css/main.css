@@ -16,3 +16,11 @@
   gap: 30px;
   padding: 20px 40px;
 }
+
+.sucesso {
+  background-color: #00ff00;
+  color: #fff;
+  font-weight: 700;
+  padding: 8px;
+  margin-bottom: 10px;
+}
