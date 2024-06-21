@@ -1,0 +1,45 @@
+.box-login {
+  background-color: #292929;
+  max-width: 500px;
+  width: 100%;
+  margin: 200px auto;
+}
+
+.box-login form {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.box-login form label {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.box-login form input {
+  height: 40px;
+  width: 100%;
+  padding-left: 10px;
+  color: #292929;
+  font-size: 20px;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.box-login form input[type="submit"] {
+  background-color: #254D9A;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  max-width: 150px;
+}
+
+.box-erro {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 5px;
+  margin-bottom: 10px;
+}
