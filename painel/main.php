@@ -1,3 +1,8 @@
+<?php
+  if (isset($_GET['loggout'])) {
+    Painel::loggout();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +13,7 @@
 </head>
 <body>
   <header class="header">
-    <a href="">Sair</a>
+    <a href="<?php echo INCLUDE_PATH_PAINEL; ?>?loggout">Sair</a>
   </header>
   <section class="submenu">
     <a href="<?php echo INCLUDE_PATH_PAINEL; ?>cadastrar-categoria">Cadastrar Categoria |</a>
@@ -16,5 +21,7 @@
     <a href="<?php echo INCLUDE_PATH_PAINEL; ?>cadastrar-noticia">Cadastrar Notícia |</a>
     <a href="<?php echo INCLUDE_PATH_PAINEL; ?>gerenciar-noticias">Gerenciar Noticías |</a>
   </section>
+
+  <?php Painel::carregarPagina(); ?>
 </body>
 </html>
