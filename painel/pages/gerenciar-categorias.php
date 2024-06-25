@@ -1,3 +1,13 @@
+<?php
+
+  if(isset($_GET['deletar'])) {
+    $idDeletar = $_GET['deletar'];
+    $sql = MySql::conectar()->prepare("DELETE FROM `categorias` WHERE id = ?");
+    $sql->execute(array($idDeletar));
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +36,7 @@
             <td><?php echo $value['nome'] ?></td>
             <td><?php echo $value['slug'] ?></td>
             <td><a href="<?php echo INCLUDE_PATH_PAINEL ?>/editar-categoria/?id=<?php echo $value['id'] ?>">Editar</a></td>
-            <td><a href="">Excluir</a></td>
+            <td><a href="<?php echo INCLUDE_PATH_PAINEL ?>/gerenciar-categorias?deletar=<?php echo $value['id'] ?>">Excluir</a></td>
           </tr>
       <?php } ?>
     </tbody>
