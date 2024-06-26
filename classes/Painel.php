@@ -74,6 +74,33 @@
       }
       return $certo;
     }
+
+    public static function validadorImagem($imagem) {
+      if(
+        $imagem['type'] === 'image/jpeg' ||
+        $imagem['type'] === 'image/jpg' ||
+        $imagem['type'] === 'image/png'
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public static function uploadImagem($imagem) {
+      $format = explode('/', $imagem['type'])[1];
+      $nameImage = uniqid().'.'.$format;
+      
+      if (move_uploaded_file($imagem['tmp_name'], BASE_DIR_PAINEL.'/uploads/'.$nameImage)) {
+        return $nameImage;
+      } else {
+        return false;
+      }
+    }
+
+    public static function deletarImagem($imagem) {
+      @unlink('/uploads/'.$imagem);
+    }
   }
 
 ?>
