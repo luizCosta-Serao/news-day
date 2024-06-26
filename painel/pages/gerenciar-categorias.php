@@ -1,9 +1,21 @@
 <?php
-
+  // deletar categoria
   if(isset($_GET['deletar'])) {
     $idDeletar = $_GET['deletar'];
     $sql = MySql::conectar()->prepare("DELETE FROM `categorias` WHERE id = ?");
     $sql->execute(array($idDeletar));
+    // deletar imgs das notícias quando as mesmas forem deletadas
+    $deleteImgNoticias = MySql::conectar()->prepare("SELECT * FROM `noticias` WHERE categoria_id = ?");
+    $deleteImgNoticias->execute(array($idDeletar));
+    $deleteImgNoticias = $deleteImgNoticias->fetchAll();
+    foreach ($deleteImgNoticias as $key => $value) {
+      unlink(BASE_DIR_PAINEL.'/uploads/'.$value['capa']);
+    }
+    
+    // quando deletar a categoria, delete todas as notícias que estão nessa categoria também
+    $deleteNoticias = MySql::conectar()->prepare("DELETE FROM `noticias` WHERE categoria_id = ?");
+    $deleteNoticias->execute(array($idDeletar));
+
   }
 
 ?>
