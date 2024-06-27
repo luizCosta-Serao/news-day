@@ -63,7 +63,7 @@
 
     <div class="form-group">
       <label for="conteudo">Conteúdo</label>
-      <textarea name="conteudo" id="conteudo"><?php echo recoverPost('conteudo') ?></textarea>
+      <textarea class="tinymce" name="conteudo" id="conteudo"><?php echo recoverPost('conteudo') ?></textarea>
     </div>
 
     <input type="submit" name="action" value="Publicar">
