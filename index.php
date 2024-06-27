@@ -1,4 +1,15 @@
 <?php include('config.php') ?>
+<?php
+    // obtendo URL
+    $url = explode('/', $_SERVER['REQUEST_URI']);
+    // Se url no index 2 existir
+    if (isset($url[2])) {
+        // puxar uma única categoria
+        $categoria = MySql::conectar()->prepare("SELECT* FROM `categorias` WHERE slug = ?");
+        $categoria->execute(array($url['2']));
+        $categoria = $categoria->fetch();
+    } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,13 +59,15 @@
               <h2>Selecione a categoria</h2>
               <form action="">
                   <select name="category" id="category">
+                    <option value="" disabled selected>Todas as categorias</option>
                     <?php
+                        // puxar todas as categorias e inserir no front end
                         $categorias = MySql::conectar()->prepare("SELECT * FROM `categorias`");
                         $categorias->execute();
                         $categorias = $categorias->fetchAll();
                         foreach ($categorias as $key => $value) {
                     ?>
-                            <option value="<?php echo $value['slug'] ?>"><?php echo $value['nome'] ?></option>
+                            <option <?php if($value['slug'] === $url[2]) echo 'selected' ?> value="<?php echo $value['slug'] ?>"><?php echo $value['nome'] ?></option>
                     <?php
                         }
                     ?>
@@ -70,33 +83,41 @@
       </aside>
 
       <div class="noticias">
-          <h2>Visualizando em esportes</h2>
+            <?php
+                // Título dinâmico de acordo com o valor da $url[2]
+                if ($url[2] === '') {
+                    echo '<h2>Visualizando todos os posts</h2>';
+                } else {
+                    echo '<h2>Visualizando posts em <span>'.$categoria['nome'].'</span></h2>';
+                }
+
+                // puxando notícias que estão na categoria atual
+                $query = "SELECT * FROM `noticias` ";
+                if ($url[2] !== '') {
+                    $categoria['id'] = (int)$categoria['id'];
+                    $query.="WHERE categoria_id = $categoria[id]";
+                }
+                $sql = MySql::conectar()->prepare($query);
+                $sql->execute();
+                $noticias = $sql->fetchAll();
+            ?>
           <ul class="lista-noticias">
-              <li class="single-noticia">
-                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
-                  <a class="btn" href="">LER MAIS</a>
-              </li>
-
-              <li class="single-noticia">
-                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
-                  <a class="btn" href="">LER MAIS</a>
-              </li>
-
-              <li class="single-noticia">
-                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
-                  <a class="btn" href="">LER MAIS</a>
-              </li>
-
-              <li class="single-noticia">
-                  <h3>19/06/2024 - Conheça os eleitos para ga...</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, tortor nec ultrices porta, risus dolor efficitur ex, a malesuada nibh libero quis mi. Curabitur et aliquam massa. Curabitur luctus, lacus placerat maximus .</p>
-                  <a class="btn" href="">LER MAIS</a>
-              </li>
+                <?php
+                    // inserindo no front end as notícias
+                    foreach ($noticias as $key => $value) {
+                        $sql = MySql::conectar()->prepare("SELECT * FROM `categorias` WHERE id = ?");
+                        $sql->execute(array($value['categoria_id']));
+                        $categoriaNome = $sql->fetch()['slug'];
+                ?>
+                    <li class="single-noticia">
+                        <h3><?php echo date('d/m/Y',strtotime($value['data'])) ?> - <?php echo $value['titulo'] ?></h3>
+                        <p><?php echo substr(strip_tags($value['conteudo']),0, 400); ?></p>
+                        <a class="btn" href="<?php echo INCLUDE_PATH; ?><?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">LER MAIS</a>
+                    </li>
+                <?php } ?>
           </ul>
       </div>
   </section>
+  <script src="<?php echo INCLUDE_PATH; ?>js/index.js"></script>
 </body>
 </html>
