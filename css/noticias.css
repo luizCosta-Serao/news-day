@@ -30,3 +30,19 @@
   max-width: 604px;
   margin-bottom: 15px;
 }
+
+.paginacao {
+  display: flex;
+  gap: 1rem;
+}
+
+.paginacao a {
+  background-color: #141414;
+  color: #fff;
+  padding: 5px 8px;
+}
+
+.paginacao a.page-active {
+  background-color: #9AB2E0;
+  color: #141414;
+}
