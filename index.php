@@ -48,10 +48,17 @@
               <h2>Selecione a categoria</h2>
               <form action="">
                   <select name="category" id="category">
-                      <option value="">Gerais</option>
-                      <option value="">Esportes</option>
-                      <option value="">Saúde</option>
-                  </select>
+                    <?php
+                        $categorias = MySql::conectar()->prepare("SELECT * FROM `categorias`");
+                        $categorias->execute();
+                        $categorias = $categorias->fetchAll();
+                        foreach ($categorias as $key => $value) {
+                    ?>
+                            <option value="<?php echo $value['slug'] ?>"><?php echo $value['nome'] ?></option>
+                    <?php
+                        }
+                    ?>
+                 </select>
               </form>
           </div>
 
