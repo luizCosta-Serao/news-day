@@ -40,8 +40,8 @@
               // criando slug
               $slug = Painel::generateSlug($titulo);
               // atualizando notícia
-              $sql = MySql::conectar()->prepare("UPDATE `noticias` SET categoria_id = ?, titulo = ?, conteudo = ?, capa = ?, slug = ? WHERE id = ?");
-              $sql->execute(array($categoria_id, $titulo, $conteudo, $capaName, $slug, $id));
+              $sql = MySql::conectar()->prepare("UPDATE `noticias` SET categoria_id = ?, data = ?, titulo = ?, conteudo = ?, capa = ?, slug = ? WHERE id = ?");
+              $sql->execute(array($categoria_id, date('Y-m-d'), $titulo, $conteudo, $capaName, $slug, $id));
               Painel::alert('sucesso', 'Categoria cadastrada com sucesso');
             } else if ($capa['size'] === 0) {
               //se não tiver selecinado uma nova img
@@ -49,8 +49,8 @@
               // criando slug
               $slug = Painel::generateSlug($titulo);
               // atualizando notícia
-              $sql = MySql::conectar()->prepare("UPDATE `noticias` SET categoria_id = ?, titulo = ?, conteudo = ?, capa = ?, slug = ? WHERE id = ?");
-              $sql->execute(array($categoria_id, $titulo, $conteudo, $capa_atual, $slug, $id));
+              $sql = MySql::conectar()->prepare("UPDATE `noticias` SET categoria_id = ?, data = ?, titulo = ?, conteudo = ?, capa = ?, slug = ? WHERE id = ?");
+              $sql->execute(array($categoria_id, date('Y-m-d'), $titulo, $conteudo, $capa_atual, $slug, $id));
               Painel::alert('sucesso', 'Notícia atualizada com sucesso sem alteração da capa');
             } else {
               echo print_r($capa);
