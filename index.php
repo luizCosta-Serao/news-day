@@ -5,7 +5,7 @@
     // Se url no index 2 existir
     if (isset($url[2])) {
         // puxar uma única categoria
-        $categoria = MySql::conectar()->prepare("SELECT* FROM `categorias` WHERE slug = ?");
+        $categoria = MySql::conectar()->prepare("SELECT * FROM `categorias` WHERE slug = ?");
         $categoria->execute(array($url['2']));
         $categoria = $categoria->fetch();
     } 
@@ -84,6 +84,9 @@
 
       <div class="noticias">
             <?php
+                // quantidade de notícias por página
+                $porPagina = 2;
+
                 // Título dinâmico de acordo com o valor da $url[2]
                 if ($url[2] === '') {
                     echo '<h2>Visualizando todos os posts</h2>';
@@ -96,6 +99,15 @@
                 if ($url[2] !== '') {
                     $categoria['id'] = (int)$categoria['id'];
                     $query.="WHERE categoria_id = $categoria[id]";
+                }
+                // se pagina estiver setada
+                if (isset($_GET['pagina'])) {
+                    $pagina = (int)$_GET['pagina'];
+                    $queryPg = ($pagina - 1) * $porPagina;
+                    $query.=" LIMIT $queryPg, $porPagina";
+                } else {
+                    $pagina = 1;
+                    $query.=" LIMIT 0, $porPagina";
                 }
                 $sql = MySql::conectar()->prepare($query);
                 $sql->execute();
@@ -115,6 +127,29 @@
                         <a class="btn" href="<?php echo INCLUDE_PATH; ?><?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">LER MAIS</a>
                     </li>
                 <?php } ?>
+
+                <?php
+                    $query = "SELECT * FROM `noticias` ";
+                    if ($url[2] !== '') {
+                        $categoria['id'] = (int)$categoria['id'];
+                        $query.="WHERE categoria_id = $categoria[id]";
+                    }
+                    $totalPaginas = MySql::conectar()->prepare($query);
+                    $totalPaginas->execute();
+                    $totalPaginas = ceil($totalPaginas->rowCount() / $porPagina)
+                ?>
+                <div class="paginacao">
+                    <?php
+                        for ($i=1; $i <= $totalPaginas ; $i++) {
+                            @$catStr = ($categoria['nome'] !== '') ? $categoria['slug'] : '';
+                            if ($pagina === $i) {
+                                echo '<a class="page-active" href="'.INCLUDE_PATH.$catStr.'/?pagina='.$i.'">'.$i.'</a>';
+                            } else {
+                                echo '<a href="'.INCLUDE_PATH.$catStr.'/?pagina='.$i.'">'.$i.'</a>';
+                            }
+                        }
+                    ?>
+                </div>
           </ul>
       </div>
   </section>
