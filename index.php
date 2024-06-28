@@ -49,9 +49,9 @@
                   Realizar uma busca 
                   <img title="Search" src="<?php echo INCLUDE_PATH; ?>assets/search.svg" alt="Search">
               </h2>
-              <form action="">
+              <form action="" method="post">
                   <input type="text" name="search" id="search">
-                  <input class="btn" type="submit" name="action" value="BUSCAR">
+                  <input class="btn" type="submit" name="searchItem" value="BUSCAR">
               </form>
           </div>
 
@@ -112,6 +112,16 @@
                 $sql = MySql::conectar()->prepare($query);
                 $sql->execute();
                 $noticias = $sql->fetchAll();
+
+                
+            ?>
+            <?php
+                if (isset($_POST['searchItem'])) {
+                    $search = $_POST['search'];
+                    $sql = MySql::conectar()->prepare("SELECT * FROM `noticias` WHERE titulo LIKE '%$search%'");
+                    $sql->execute();
+                    $noticias = $sql->fetchAll();
+                }
             ?>
           <ul class="lista-noticias">
                 <?php
@@ -129,23 +139,27 @@
                 <?php } ?>
 
                 <?php
-                    $query = "SELECT * FROM `noticias` ";
-                    if ($url[2] !== '') {
-                        $categoria['id'] = (int)$categoria['id'];
-                        $query.="WHERE categoria_id = $categoria[id]";
+                    if (!isset($_POST['searchItem'])) {
+                        $query = "SELECT * FROM `noticias` ";
+                        if ($url[2] !== '') {
+                            $categoria['id'] = (int)$categoria['id'];
+                            $query.="WHERE categoria_id = $categoria[id]";
+                        }
+                        $totalPaginas = MySql::conectar()->prepare($query);
+                        $totalPaginas->execute();
+                        $totalPaginas = ceil($totalPaginas->rowCount() / $porPagina);
                     }
-                    $totalPaginas = MySql::conectar()->prepare($query);
-                    $totalPaginas->execute();
-                    $totalPaginas = ceil($totalPaginas->rowCount() / $porPagina)
                 ?>
                 <div class="paginacao">
                     <?php
-                        for ($i=1; $i <= $totalPaginas ; $i++) {
-                            @$catStr = ($categoria['nome'] !== '') ? $categoria['slug'] : '';
-                            if ($pagina === $i) {
-                                echo '<a class="page-active" href="'.INCLUDE_PATH.$catStr.'/?pagina='.$i.'">'.$i.'</a>';
-                            } else {
-                                echo '<a href="'.INCLUDE_PATH.$catStr.'/?pagina='.$i.'">'.$i.'</a>';
+                        if (!isset($_POST['searchItem'])) {
+                            for ($i=1; $i <= $totalPaginas ; $i++) {
+                                @$catStr = ($categoria['nome'] !== '') ? $categoria['slug'] : '';
+                                if ($pagina === $i) {
+                                    echo '<a class="page-active" href="'.INCLUDE_PATH.$catStr.'/?pagina='.$i.'">'.$i.'</a>';
+                                } else {
+                                    echo '<a href="'.INCLUDE_PATH.$catStr.'/?pagina='.$i.'">'.$i.'</a>';
+                                }
                             }
                         }
                     ?>
