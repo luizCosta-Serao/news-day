@@ -19,6 +19,7 @@
         $_SESSION['user_email'] = $email;
         $_SESSION['user_senha'] = $senha;
         $_SESSION['user_nome'] = $infoUsuario['nome'];
+        $_SESSION['user_id'] = $infoUsuario['id'];
         header('Location: '.INCLUDE_PATH);
         die();
       }
