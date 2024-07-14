@@ -21,5 +21,6 @@
   <h1><?php echo $noticiaSingle['titulo']; ?></h1>
   <?php echo $noticiaSingle['conteudo']; ?>
   
+  
 </body>
 </html>
