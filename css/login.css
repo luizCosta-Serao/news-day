@@ -1,0 +1,97 @@
+.login-form,
+.cadastre-se-form {
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 10px;
+  margin: 128px auto 0 auto;
+}
+
+.login-form label,
+.cadastre-se-form label {
+  color: #222;
+  font-size: 20px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.login-form input,
+.cadastre-se-form input {
+  color: #222;
+  font-size: 20px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  padding-left: 8px;
+}
+
+.login-form input[type="submit"],
+.cadastre-se-form input[type="submit"] {
+  background-color: #222;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.comentarios {
+  margin-top: 64px ;
+  background-color: #ccc;
+  padding: 32px;
+}
+
+.comentarios h2 {
+  color: #222;
+  font-weight: 400;
+  margin-bottom: 32px;
+  font-size: 24px;
+}
+
+.comentarios form textarea {
+  resize: none;
+  height: 150px;
+  width: 400px;
+  border-radius: 10px;
+  color: #222;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 16px;
+  padding: 8px;
+}
+
+.comentarios form input[type="submit"] {
+  background-color: #222;
+  padding: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+}
+
+.single-comentario {
+  background-color: #fff;
+  padding: 16px;
+  margin-bottom: 16px;
+  max-width: 500px;
+}
+
+.single-comentario h3 {
+  color: #222;
+  font-size: 16px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.single-comentario p {
+  color: #222;
+  font-size: 20px;
+
+}

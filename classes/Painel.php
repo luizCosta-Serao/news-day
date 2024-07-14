@@ -5,6 +5,10 @@
       return isset($_SESSION['login']) ? true : false;
     }
 
+    public static function userLogado() {
+      return isset($_SESSION['user_logado']) ? true : false;
+    }
+
     public static function loggout() {
       session_destroy();
       header('Location: '.INCLUDE_PATH_PAINEL);

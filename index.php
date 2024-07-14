@@ -17,12 +17,28 @@
           <img src="<?php echo INCLUDE_PATH; ?>assets/logo.svg" alt="">
       </a>
       <nav class="menu">
+        <?php
+          if (isset($_GET['sair'])) {
+            session_destroy();
+            header('Location: '.INCLUDE_PATH);
+            die();
+          }
+        ?>
           <ul>
               <li><a href="<?php echo INCLUDE_PATH; ?>">Home</a></li>
               <li><a href="">Recentes</a></li>
               <li><a href="">Esportes</a></li>
               <li><a href="">Gerais</a></li>
               <li><a href="">Saúde</a></li>
+              <?php
+                if (@$_SESSION['user_logado']) {
+              ?>
+                <p><?php echo $_SESSION['user_nome']; ?></p>
+                <a href="<?php echo INCLUDE_PATH; ?>?sair">Sair</a>
+              <?php } else { ?>
+                <li><a href="<?php echo INCLUDE_PATH; ?>/login">Login</a></li>
+                <li><a href="<?php echo INCLUDE_PATH; ?>cadastre-se">Cadastre-se</a></li>
+              <?php } ?>
           </ul>
       </nav>
   </header>
@@ -34,6 +50,10 @@
 
     if ($url === '' || str_contains($url, '?') === true) {
         include('pages/home.php');
+    } else if($url === 'login') {
+      include('pages/login.php');
+    } else if ($url === 'cadastre-se') {
+      include('pages/cadastre-se.php');
     } else {
         include('pages/single-noticia.php');
     }
